@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAW</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        #board{
+            border: 1px solid #e0e0e0;
+        }
+        .container {
+            width: 100%;
+            height: 10vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .color{
+            width: 40px;
+            height: 40px;
+            border: 0;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        .red {background-color: #f44336;}
+        .blue {background-color: #2196f3;}
+        .green {background-color: #4caf50;}
+        .yellow {background-color: #ffeb3b;}
+        .white {background-color: #ffffff;
+        border: 1px solid #212121; }
+        .dark {background-color: #212121;}
+        .title{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-right: 20px;
+            font-weight: 700;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <span class="title">Colors</span>
+    <button class="color red" onclick="setColor('#f44336')"></button>
+    <button class="color blue" onclick="setColor('#2196f3')"></button>
+    <button class="color green" onclick="setColor('#4caf50')"></button>
+    <button class="color yellow" onclick="setColor('#ffeb3b')"></button>
+    <button class="color white" onclick="setColor('#ffffff')"></button>
+    <button class="color dark" onclick="setColor('#212121')"></button>
+
+    <span class="title">Sizes</span>
+    <select onchange="setWidth(this)">
+        <option value="5">1</option>
+        <option value="10">2</option>
+        <option value="15">3</option>
+        <option value="20">4</option>
+        <option value="25">5</option>
+        <option value="30">6</option>
+        <option value="35">7</option>
+        <option value="40">8</option>
+        <option value="45">9</option>
+        <option value="50">10</option>
+    </select>
+</div>
+
+    <canvas id="board" width="500" height="500"></canvas>
+
+    <script>
+
+        let canvas = document.getElementById("board")
+        let board= canvas.getContext("2d")
+
+        let active= false, x, y
+
+        board.lineCap ="round"
+        board.lineJoin="round"
+        board.lineWidth = 5
+        board.strokeStyle ="#000"
+
+        function setColor ( color){
+            board.strokeStyle = color
+        }
+        function setWidth ( e){
+            board.lineWidth = e.value
+        }
+        document.onmousedown = function(e){
+            active = true
+            x= e.clientX - canvas.offsetLeft
+            y= e.clientY - canvas.offsetTop
+            board.beginPath()
+            board.moveTo(x,y)
+        }
+
+        document.onmousemove = function(e) {
+
+            if (active){
+                x= e.clientX - canvas.offsetLeft
+                y= e.clientY - canvas.offsetTop
+                board.lineTo(x,y)
+                board.stroke()
+            }
+        }
+        document.onmouseup = function(){
+            active = false
+            board.closePath()
+        }
+    </script>
+</body>
+</html>
