@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Attendance</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<form action="https://sheetdb.io/api/v1/ummoz9tikfle3" method="post" id="atdn">
+  <div class="container">
+
+    <h1>Sign Up</h1>
+    <hr>
+
+    <label for="Student_id"><b>Id No.</b></label>
+    <input type="text" placeholder="Enter Student Id" name="data[Student_id]" required>
+
+    <label for="Firstname"><b>Firstname</b></label>
+    <input type="text" placeholder="Enter Firstname" name="data[Firstname]" required>
+
+    <label for="Lastname"><b>Lastname</b></label>
+    <input type="text" placeholder="Enter Lastname" name="data[Lastname]" required>
+
+
+    <div class="clearfix">
+      <button type="submit" class="signupbtn">Submit</button>
+    </div>
+  </div>
+  </form>
+
+  <div>
+    <table>
+        <button class="at"
+onclick="document.location='https://docs.google.com/spreadsheets/d/1meIkGcfTPfwi46f4L6ng6qPDNNeoKZHZUwBKr8Duv1U/edit#gid=0' ">Record</button>
+        <tbody id="data"></tbody>
+        <thead>
+            <tr>
+                <th>Student_id</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<script>
+  var form = document.getElementById('atdn');
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(document.getElementById("atdn")),
+    }).then(
+      response => response.json()
+    ).then((html) => {
+        alert("Thank You!");
+      {
+        location.reload();
+      }
+    });
+  });
+</script>
+<script src="record.js"></script>
+</body>
+</html>

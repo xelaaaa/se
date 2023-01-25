@@ -1,0 +1,109 @@
+
+ body {
+    display: flex;
+    justify-content: center;
+    background-color: #0941b2;
+    background-image: url("https://eadn-wc04-796033.nxedge.io/cdn/wp-content/uploads/home-banner-2-2-e1646713448525.jpg");
+  }
+
+
+* {box-sizing: border-box}
+
+
+  input[type=text]{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+button {
+  
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+.signupbtn {
+  float: left;
+  width: 50%;
+  border-radius: 8px;
+}
+
+.at {
+  float: right;
+  width: 30%;
+  background-color: #1804a9;
+   padding: 10px 10px;
+  border-radius: 12px;
+}
+
+
+.container {
+    padding: 16px;
+    background-color: #709de6;
+    border-radius: 20px;
+    box-sizing: border-box;
+    height: 500px;
+    padding: 20px;
+    width: 500px;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+@media screen and (max-width: 300px) 
+{
+     .signupbtn {
+    width: 100%;
+  }
+     .at {
+    width: 100%;
+
+}}
+table, td, th {
+    border: 1px solid black;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #709de6;
+  }
+  
+  th {
+    height: 50px;
+    background-color: #0d41d0;
+    color: rgb(255, 255, 255);
+  }
+
+  td {
+      text-align: center;
+  }
+  tr:nth-child(even) {background-color: #f2f2f2;}
