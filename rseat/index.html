@@ -1,0 +1,118 @@
+<!doctype html>
+
+
+<html>
+
+<head>
+    <title> Bus Seat Reservation Site</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/jquery.seat-charts.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="js/jquery.seat-charts.js"></script>
+    <style>
+        table {
+    font-family: arial, sans-serif;
+    width: 50%;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px #000;
+    font-size: 21px;
+    font-weight: 700;
+    padding: 8px;
+    text-align: center;
+    border-radius: 3em;
+        }
+        u { 
+  text-decoration: underline;
+}
+   </style>
+
+         <style type="text/css">
+            .printMe {display: none;}
+            @media print {
+                div {display: none;}
+                .printMe {display: block;}
+            }
+
+            #hidden_div{display: none;}
+            
+        </style>
+</head>
+
+<body>
+    <div class="front-indicator">Calamba Bus Station</div>
+    <table align="center" id="table">
+        <tr>
+          <th bgcolor="gold">Available</th>
+          <th bgcolor="red">Already booked</th>
+        </tr>
+      </table>
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="grid-50">
+                    <div id="seat-map">
+                        <h4 class="text-muted fw-bold text-center" style="padding-left:3em; margin:.5em"> Front Seat </h4>
+                        <div id="bus-seat-map"></div>
+                        <h4 class="text-muted fw-bold text-center" style="padding-left:3em; margin:.5em"> Back Seat </h4>
+                    </div>
+                </div>
+                <div class="grid-50">
+                    <div class="booking-details">
+                        <form action="" method="post" id="print" data-print-title="Calamba bus station">
+                          <center><h2 >Reservation Details</h2></center>
+                            <h3> Selected Seats (<span id="counter">0</span>):</h3>
+                            <ul id="selected-seats"></ul>
+                        <center><h2>Total: <b>P<span id="total">0</span></b></h2></center>
+                        <center><u><div class="printMe" style="text-align:right; margin:100px 100px;"><img src="gg.png"  width="130" height="90"><p>Juan Delacruz</p></div></u></center>
+                        <div id="printdiv">
+                            </div>
+                        </form>
+                        <br>
+                        <button type="button" id="checkout-button"value="Print" size="50" onclick="popPrint('print')" >Submit Book</button>
+                        <button id="reset-btn" type="button">Reset Bus Seat</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function popPrint(element, css, css_url){ //function used to popup print the innerHTML of the passed in element
+            var html, printWin;
+            element = element.tagName? element : document.getElementById(element);
+            css = css || ""; //optionally add a default css
+            css = "<style type='text/css'>"+css+"</style>";
+            css_url = css_url || ''; //optionally add a default print stylesheet url to the popup
+            if ( css_url !== '' ) {
+                css_url = "<link rel='stylesheet' type='text/css' href='"+css_url+"' media='print' />";
+            }
+            html = '<html><head><title>'+(element.getAttribute('data-print-title') || '')+'</title>'+css+css_url+'</head>'+element.innerHTML+'</html>';
+        
+            printWin = window.open('', '', 'left=100, top=100, width=600, height=400, toolbar=no, scrollbars=yes, status=yes' );
+            printWin.document.write(html);
+            printWin.document.close();
+            printWin.focus();
+            printWin.print();
+            printWin.close(); //not executed in Opera for some reason, user can manually close easily enough
+        }
+
+            function myPrint() {
+        var myPrintContent = document.getElementById('printdiv');
+        var myPrintWindow = window.open(windowUrl, windowName, 'left=300,top=100,width=400,height=400');
+        myPrintWindow.document.write(myPrintContent.innerHTML);
+        myPrintWindow.document.getElementById('hidden_div').style.display='block'
+        myPrintWindow.document.close();
+        myPrintWindow.focus();
+        myPrintWindow.print();
+        myPrintWindow.close();    
+        return false;
+    }
+        </script>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
